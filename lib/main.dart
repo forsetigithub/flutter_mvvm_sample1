@@ -81,10 +81,9 @@ class MyHomePage extends ConsumerWidget {
             const Text(
               'You have pushed the button this many times:',
             ),
-            Text(
-              '${viewModel.counter}',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+            viewModel.when(data: (result) => Text('${result.counter}',style: Theme.of(context).textTheme.headline4),
+                error: (e,__) => Text(e.toString()),
+                loading: () => const Center(child: CircularProgressIndicator())),
           ],
         ),
       ),
